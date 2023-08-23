@@ -9,7 +9,8 @@ export function PostLists ({ posts }: { posts: Post[] | null }) {
           const {
             id,
             user,
-            content
+            content,
+            created_at: createdAt
           } = post
 
           const {
@@ -25,6 +26,7 @@ export function PostLists ({ posts }: { posts: Post[] | null }) {
               key={id}
               userFullName={userFullName}
               userName={userName}
+              createdAt={createdAt}
             />
           )
         })
