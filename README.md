@@ -4,6 +4,7 @@ Tools:
 - Next.js 13
 - Supabase
 - TypeScript
+- Tailwind
 - GitHub integration
 
 Features:
