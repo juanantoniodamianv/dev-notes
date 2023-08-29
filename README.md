@@ -1,4 +1,4 @@
-##### This is a simple application to Share Thoughts.
+### This is a simple application to Share Thoughts.
 
 Tools:
 - Next.js 13
