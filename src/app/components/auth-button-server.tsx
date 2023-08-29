@@ -3,7 +3,7 @@ import { cookies } from 'next/headers'
 
 import { AuthButton } from './auth-button-client'
 
-export async function AuthButtonServer () {
+export async function AuthButtonServer (): Promise<JSX.Element> {
   const supabase = createServerComponentClient({ cookies })
   const {
     data: { session }

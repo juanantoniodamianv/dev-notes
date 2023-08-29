@@ -4,7 +4,7 @@ import { cookies } from 'next/headers'
 import { createServerActionClient } from '@supabase/auth-helpers-nextjs'
 import { revalidatePath } from 'next/cache'
 
-export const addPost = async (formData: FormData) => {
+export const addPost = async (formData: FormData): Promise<void> => {
   const content = formData.get('content')
 
   if (content === null) return

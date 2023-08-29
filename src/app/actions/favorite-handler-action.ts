@@ -4,7 +4,7 @@ import { cookies } from 'next/headers'
 import { createServerActionClient } from '@supabase/auth-helpers-nextjs'
 import { revalidatePath } from 'next/cache'
 
-export const handleFavoritePost = async ({ postId }: { postId: string }) => {
+export const handleFavoritePost = async ({ postId }: { postId: string }): Promise<void> => {
   const supabase = createServerActionClient({ cookies })
 
   const {
@@ -24,7 +24,7 @@ export const handleFavoritePost = async ({ postId }: { postId: string }) => {
     console.error(`Error on getting favorites: ${error}`)
   }
 
-  if (!favoritesToDelete?.length) {
+  if (favoritesToDelete?.length === 0) {
     try {
       await supabase
         .from('favorites')
