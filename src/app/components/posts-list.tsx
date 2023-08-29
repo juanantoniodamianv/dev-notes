@@ -1,12 +1,12 @@
-import { type Post } from "@/app/types/posts";
+import { type Post } from '@/app/types/posts'
 
-import PostCard from "./post-card";
+import PostCard from './post-card'
 
 interface PostWithFavorite extends Post {
-  is_favorite: boolean;
+  is_favorite: boolean
 }
 
-export function PostLists({ posts }: { posts: PostWithFavorite[] | null }) {
+export function PostLists ({ posts }: { posts: PostWithFavorite[] | null }) {
   return (
     <>
       {posts?.map((post) => {
@@ -16,14 +16,14 @@ export function PostLists({ posts }: { posts: PostWithFavorite[] | null }) {
           content,
           created_at: createdAt,
           favorites_count: favoritesCount,
-          is_favorite: isFavorite,
-        } = post;
+          is_favorite: isFavorite
+        } = post
 
         const {
           user_name: userName,
           name: userFullName,
-          avatar_url: avatarUrl,
-        } = user;
+          avatar_url: avatarUrl
+        } = user
 
         return (
           <PostCard
@@ -37,8 +37,8 @@ export function PostLists({ posts }: { posts: PostWithFavorite[] | null }) {
             userFullName={userFullName}
             userName={userName}
           />
-        );
+        )
       })}
     </>
-  );
+  )
 }

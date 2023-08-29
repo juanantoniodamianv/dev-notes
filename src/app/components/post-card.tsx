@@ -1,18 +1,18 @@
-"use client";
+'use client'
 
 import {
   Card,
   CardHeader,
   CardBody,
   Avatar,
-  CardFooter,
-} from "@nextui-org/react";
-import Link from "next/link";
+  CardFooter
+} from '@nextui-org/react'
+import Link from 'next/link'
 
-import { getFormattedDate } from "../utils";
-import { FavoritePostButton } from "./favorite-post-button";
+import { getFormattedDate } from '../utils'
+import { FavoritePostButton } from './favorite-post-button'
 
-export default function PostCard({
+export default function PostCard ({
   avatarUrl,
   content,
   createdAt,
@@ -20,16 +20,16 @@ export default function PostCard({
   isFavorite,
   postId,
   userFullName,
-  userName,
+  userName
 }: {
-  avatarUrl: string;
-  content: string;
-  createdAt: string;
-  favoritesCount: number | null;
-  isFavorite: boolean;
-  postId: string;
-  userFullName: string;
-  userName: string;
+  avatarUrl: string
+  content: string
+  createdAt: string
+  favoritesCount: number | null
+  isFavorite: boolean
+  postId: string
+  userFullName: string
+  userName: string
 }) {
   return (
     <Card>
@@ -59,5 +59,5 @@ export default function PostCard({
         />
       </CardFooter>
     </Card>
-  );
+  )
 }

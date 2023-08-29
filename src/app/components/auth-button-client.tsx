@@ -1,34 +1,35 @@
-"use client";
+'use client'
 
 import {
   type Session,
-  createClientComponentClient,
-} from "@supabase/auth-helpers-nextjs";
-import { useRouter } from "next/navigation";
+  createClientComponentClient
+} from '@supabase/auth-helpers-nextjs'
+import { useRouter } from 'next/navigation'
 
-import { GithubIcon } from "./icons";
+import { GithubIcon } from './icons'
 
-export function AuthButton({ session }: { session: Session | null }) {
-  const supabase = createClientComponentClient();
-  const router = useRouter();
+export function AuthButton ({ session }: { session: Session | null }) {
+  const supabase = createClientComponentClient()
+  const router = useRouter()
 
   const handleSignIn = async () => {
     await supabase.auth.signInWithOAuth({
-      provider: "github",
+      provider: 'github',
       options: {
-        redirectTo: "http://localhost:3000/auth/callback",
-      },
-    });
-  };
+        redirectTo: 'http://localhost:3000/auth/callback'
+      }
+    })
+  }
 
   const handleSignOut = async () => {
-    await supabase.auth.signOut();
-    router.refresh();
-  };
+    await supabase.auth.signOut()
+    router.refresh()
+  }
 
   return (
     <header>
-      {session === null ? (
+      {session === null
+        ? (
         <button
           onClick={handleSignIn}
           type="button"
@@ -37,11 +38,12 @@ export function AuthButton({ session }: { session: Session | null }) {
           <GithubIcon />
           Sign In
         </button>
-      ) : (
+          )
+        : (
         <button onClick={handleSignOut} type="button">
           Sign out
         </button>
-      )}
+          )}
     </header>
-  );
+  )
 }

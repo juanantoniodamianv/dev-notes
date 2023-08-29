@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import {
   Navbar as NavbarComponent,
@@ -10,22 +10,22 @@ import {
   DropdownTrigger,
   Dropdown,
   DropdownMenu,
-  Avatar,
-} from "@nextui-org/react";
+  Avatar
+} from '@nextui-org/react'
 
-import { AuthButton } from "./auth-button-client";
-import { Session } from "@supabase/supabase-js";
+import { AuthButton } from './auth-button-client'
+import { type Session } from '@supabase/supabase-js'
 
-export default function Navbar({
+export default function Navbar ({
   userAvatarUrl,
   userName,
   userFullName,
-  session,
+  session
 }: {
-  userAvatarUrl: string;
-  userName: string;
-  userFullName: string;
-  session: Session | null;
+  userAvatarUrl: string
+  userName: string
+  userFullName: string
+  session: Session | null
 }) {
   return (
     <NavbarComponent>
@@ -33,9 +33,11 @@ export default function Navbar({
         <p className="font-bold text-inherit">DN</p>
       </NavbarBrand>
 
-      {session === null ? (
+      {session === null
+        ? (
         <AuthButton session={session} />
-      ) : (
+          )
+        : (
         <>
           <NavbarContent className="hidden sm:flex gap-4" justify="center">
             <NavbarItem>
@@ -76,7 +78,7 @@ export default function Navbar({
             </Dropdown>
           </NavbarContent>
         </>
-      )}
+          )}
     </NavbarComponent>
-  );
+  )
 }

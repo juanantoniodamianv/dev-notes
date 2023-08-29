@@ -1,41 +1,41 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
+import { cookies } from 'next/headers'
 
-import { PostLists } from "./components/posts-list";
-import { ComposePost } from "./components/compose-post";
-import Navbar from "./components/navbar";
+import { PostLists } from './components/posts-list'
+import { ComposePost } from './components/compose-post'
+import Navbar from './components/navbar'
 
-export default async function Home() {
-  const supabase = createServerComponentClient({ cookies });
+export default async function Home () {
+  const supabase = createServerComponentClient({ cookies })
   const {
-    data: { session },
-  } = await supabase.auth.getSession();
+    data: { session }
+  } = await supabase.auth.getSession()
 
   let { data: posts } = await supabase
-    .from("posts")
-    .select("*, user:users(name, avatar_url, user_name)")
-    .order("created_at", { ascending: false });
+    .from('posts')
+    .select('*, user:users(name, avatar_url, user_name)')
+    .order('created_at', { ascending: false })
 
-  const postIds = posts?.map((post) => post.id) ?? [];
+  const postIds = posts?.map((post) => post.id) ?? []
 
   const { data: favorites } = await supabase
-    .from("favorites")
-    .select("post_id")
-    .in("post_id", [...postIds])
-    .eq("user_id", session?.user?.id);
+    .from('favorites')
+    .select('post_id')
+    .in('post_id', [...postIds])
+    .eq('user_id', session?.user?.id)
 
-  if (posts) {
+  if (posts != null) {
     const favoritePostIds =
-      favorites?.map((favorite) => favorite.post_id) ?? [];
+      favorites?.map((favorite) => favorite.post_id) ?? []
 
     posts = posts?.map((post) => {
       if (favoritePostIds?.includes(post.id)) {
-        post.is_favorite = true;
+        post.is_favorite = true
       } else {
-        post.is_favorite = false;
+        post.is_favorite = false
       }
-      return post;
-    });
+      return post
+    })
   }
 
   return (
@@ -55,5 +55,5 @@ export default async function Home() {
         <PostLists posts={posts} />
       </section>
     </main>
-  );
+  )
 }
