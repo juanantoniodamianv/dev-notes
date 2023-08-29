@@ -8,24 +8,31 @@ import {
   CardFooter,
 } from "@nextui-org/react";
 import Link from "next/link";
-import { IconHeart, IconMessageCircle, IconRepeat } from "@tabler/icons-react";
+
 import { getFormattedDate } from "../utils";
+import { FavoritePostButton } from "./favorite-post-button";
 
 export default function PostCard({
-  userFullName,
-  userName,
   avatarUrl,
   content,
   createdAt,
+  favoritesCount,
+  isFavorite,
+  postId,
+  userFullName,
+  userName,
 }: {
-  userFullName: string;
-  userName: string;
   avatarUrl: string;
   content: string;
   createdAt: string;
+  favoritesCount: number | null;
+  isFavorite: boolean;
+  postId: string;
+  userFullName: string;
+  userName: string;
 }) {
   return (
-    <Card className="shadow-none bg-transparent hover:bg-slate-800 transition border-b rounded-none cursor-pointer border-white/20">
+    <Card>
       <CardHeader className="justify-between">
         <div className="flex gap-x-2">
           <Link href={`/${userName}`}>
@@ -45,15 +52,11 @@ export default function PostCard({
         <p>{content}</p>
       </CardBody>
       <CardFooter className="gap-3">
-        <button>
-          <IconMessageCircle className="w-4 h-4" />
-        </button>
-        <button>
-          <IconHeart className="w-4 h-4" />
-        </button>
-        <button>
-          <IconRepeat className="w-4 h-4" />
-        </button>
+        <FavoritePostButton
+          isFavorite={isFavorite}
+          favoritesCount={favoritesCount}
+          postId={postId}
+        />
       </CardFooter>
     </Card>
   );
