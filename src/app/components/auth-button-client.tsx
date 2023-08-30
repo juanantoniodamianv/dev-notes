@@ -11,12 +11,13 @@ import { GithubIcon } from './icons'
 export function AuthButton ({ session }: { session: Session | null }) {
   const supabase = createClientComponentClient()
   const router = useRouter()
+  const REDIRECT_AFTER_LOGIN_URL = process.env.NEXT_PUBLIC_REDIRECT_AFTER_LOGIN_URL ?? 'http://localhost:3000'
 
   const handleSignIn = async () => {
     await supabase.auth.signInWithOAuth({
       provider: 'github',
       options: {
-        redirectTo: 'http://localhost:3000/auth/callback'
+        redirectTo: `${REDIRECT_AFTER_LOGIN_URL}/auth/callback`
       }
     })
   }
